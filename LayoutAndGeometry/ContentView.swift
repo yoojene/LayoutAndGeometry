@@ -7,20 +7,40 @@
 
 import SwiftUI
 
+
+extension VerticalAlignment {
+    enum MidAccountAndName: AlignmentID { // set as a enum rather than a struct as making an instance of this type does not make sense
+        static func defaultValue(in context: ViewDimensions) -> CGFloat {
+            context[.top]
+        }
+        
+        
+    }
+    
+    static let midAccountAndName = VerticalAlignment(MidAccountAndName.self) // helper const
+}
+
+
 struct ContentView: View {
     var body: some View {
      
-        VStack(alignment: .leading) {
-            ForEach(0..<10) { position in
-                Text("Number \(position)")
-                    .alignmentGuide(.leading) { d in
-                        Double(position) * -10
-                    }
+        HStack(alignment: .midAccountAndName) {
+            VStack {
+                Text("@yoojene")
+                    .alignmentGuide(.midAccountAndName) { d in d[VerticalAlignment.center]}
+                Image("lakeland")
+                    .resizable()
+                    .frame(width: 64, height: 64)
+                
+            }
+            
+            VStack {
+                Text("Full name:")
+                Text("EUGENE CROSS")
+                    .alignmentGuide(.midAccountAndName) { d in d[VerticalAlignment.center]}
+                    .font(.largeTitle)
             }
         }
-        .background(.red)
-        .frame(width: 400, height: 400)
-        .background(.blue)
     }
 }
 
