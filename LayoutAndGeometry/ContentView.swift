@@ -9,13 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+     
+        VStack(alignment: .leading) {
+            Text("Hello, world")
+                .alignmentGuide(.leading) { d in
+                    d[.trailing]
+                }
+//                .offset(x: -100, y: 0)
+            Text("This is a longer line of text")
         }
-        .padding()
+        .background(.red)
+        .frame(width: 400, height: 400)
+        .background(.blue)
     }
 }
 
